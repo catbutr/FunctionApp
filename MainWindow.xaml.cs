@@ -19,6 +19,8 @@ namespace FunctionApp
         public MainWindow()
         {
             InitializeComponent();
+            int[] testX = [1, 2, 3, 4];
+            FunctionTable.DataContext = this;
         }
     }
 }
