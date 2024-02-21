@@ -35,7 +35,7 @@ namespace FunctionApp.Model
         /// <summary>
         /// Выбираемое пользователем значение С 
         /// </summary>
-        private int _cValue { get; set; } = 0;
+        private int cValue { get; set; } = 0;
 
         /// <summary>
         /// Степень функции
