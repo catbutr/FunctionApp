@@ -35,7 +35,17 @@ namespace FunctionApp.Model
         /// <summary>
         /// Выбираемое пользователем значение С 
         /// </summary>
-        private int cValue { get; set; } = 0;
+        public int cValue { get; set; } = 0;
+
+        public Function(double x, double y, double a, double b, int c, int power)
+        {
+            xValue = x;
+            yValue = y;
+            aValue = a;
+            bValue = b;
+            cValue = c;
+            functionPower = power;
+        }
 
         /// <summary>
         /// Степень функции
