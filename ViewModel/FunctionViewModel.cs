@@ -26,14 +26,6 @@ namespace FunctionApp.ViewModel
         }
         private void LoadFunctions()
         {
-            functions = new ObservableCollection<Function>
-            {
-                new Function(1,2,3,4,5,1),
-                new Function(1,2,3,4,5,2),
-                new Function(1,2,3,4,5,3),
-                new Function(1,2,3,4,5,4),
-                new Function(1,2,3,4,5,5)
-            };
         }
         public FunctionViewModel() => LoadFunctions();
     }

@@ -13,15 +13,6 @@ namespace FunctionApp.Model
     /// </summary>
     public class Function
     {
-        /// <summary>
-        /// Вводимое пользователем значение X и его конструктор
-        /// </summary>
-        public double xValue { get; set; } = 0;
-
-        /// <summary>
-        /// Вводимое пользователем значение Y и его конструктор
-        /// </summary>
-        public double yValue { get; set; } = 0;
 
         /// <summary>
         /// Вводимое пользователем значение A и его конструктор
@@ -38,10 +29,8 @@ namespace FunctionApp.Model
         /// </summary>
         public int cValue { get; set; } = 0;
 
-        public Function(double x, double y, double a, double b, int c, int power)
+        public Function(double a, double b, int c, int power)
         {
-            xValue = x;
-            yValue = y;
             aValue = a;
             bValue = b;
             cValue = c;
@@ -68,18 +57,5 @@ namespace FunctionApp.Model
                 _functionPower = value; 
             }
         }
-
-        /// <summary>
-        /// Решение функции
-        /// </summary>
-        /// <returns>Возвращает решение функции в формале double</returns>
-        public double solution()
-        {
-            double solution = (aValue *Math.Pow(xValue,functionPower)) + (bValue * Math.Pow(yValue, functionPower - 1)) + cValue;
-            return solution;
-
-        }
-
-
     }
 }
