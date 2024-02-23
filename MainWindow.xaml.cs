@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using FunctionApp.ViewModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,8 +20,7 @@ namespace FunctionApp
         public MainWindow()
         {
             InitializeComponent();
-            int[] testX = [1, 2, 3, 4];
-            FunctionTable.DataContext = this;
+            this.DataContext = new FunctionViewModel(); 
         }
     }
 }

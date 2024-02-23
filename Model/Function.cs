@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,12 +36,24 @@ namespace FunctionApp.Model
         /// <summary>
         /// Выбираемое пользователем значение С 
         /// </summary>
-        private int cValue { get; set; } = 0;
+        public int cValue { get; set; } = 0;
+
+        public Function(double x, double y, double a, double b, int c, int power)
+        {
+            xValue = x;
+            yValue = y;
+            aValue = a;
+            bValue = b;
+            cValue = c;
+            functionPower = power;
+        }
 
         /// <summary>
         /// Степень функции
         /// </summary>
         private int _functionPower;
+
+        public ObservableCollection<int> possibleValuesOfC;
 
         /// <summary>
         /// Конструктор степени функции
