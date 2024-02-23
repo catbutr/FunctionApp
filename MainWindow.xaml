@@ -8,19 +8,37 @@
         Title="MainWindow" Height="511" Width="898">
     <Grid>
         <Label Content="Функции" HorizontalContentAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="336" FontSize="24"/>
-        <DataGrid Name ="FunctionTable"  ItemsSource="{Binding}" ColumnWidth="*" Margin="0,217,0,-217" ClipToBounds="True" Background="Lavender"   CanUserAddRows="True"
-  CanUserDeleteRows="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <DataGrid Name ="FunctionTable" ColumnWidth="*" Margin="0,217,0,-217" ClipToBounds="True" Background="Lavender" 
+                  CanUserAddRows="True" CanUserDeleteRows="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                  ItemsSource="{Binding SelectedFunction.ArgumentsList}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="x" Binding="{Binding testX}"/>
-                <DataGridTextColumn Header="y" Binding="{Binding testX}"/>
-                <DataGridTextColumn Header="f(x,y)" Binding="{Binding testX}"/>
+                <DataGridTextColumn Header="x" Binding="{Binding XValue, Mode=TwoWay}" IsReadOnly="False" />
+                <DataGridTextColumn Header="y" Binding="{Binding YValue, Mode=TwoWay}" IsReadOnly="False" />
+                <DataGridTextColumn Header="f(x,y)" Binding="{Binding Result, Mode=TwoWay}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Коэффициент А"  Margin="10,98,0,0" VerticalAlignment="Top" Height="55" Width="123" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="aTextBox"  Height="40" Margin="138,107,0,0" TextWrapping="Wrap" Text="{Binding TestString, UpdateSourceTrigger=PropertyChanged, Mode= TwoWay}" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.675,0.476" HorizontalAlignment="Left"/>
+        <TextBox x:Name="aTextBox"  Height="40" Margin="138,107,0,0" TextWrapping="Wrap" Text="{Binding SelectedFunction.aValue, Mode=TwoWay}" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.675,0.476" HorizontalAlignment="Left"/>
         <Label Content="Коэффициент B"  Margin="-150,90,0,0" VerticalAlignment="Top" Height="70" Width="136" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="bTextBox"  Height="40" Margin="110,107,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" HorizontalAlignment="Center"/>
+        <TextBox x:Name="bTextBox"  Height="40" Margin="110,107,0,0" TextWrapping="Wrap" Text="{Binding SelectedFunction.bValue, Mode=TwoWay}" VerticalAlignment="Top" Width="112" HorizontalAlignment="Center"/>
         <Label Content="Коэффициент C"  Margin="0,90,140,0" VerticalAlignment="Top" Height="70" Width="136" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <ComboBox x:Name="cComboBox"  Margin="0,107,10,0" VerticalAlignment="Top" Width="125" Height="40" HorizontalAlignment="Right"/>
+        <ComboBox x:Name="cComboBox"  Margin="0,107,10,0" VerticalAlignment="Top" Width="125" Height="40" HorizontalAlignment="Right" 
+                  ItemsSource="{Binding SelectedFunction.availableCoefficientsOfC}"
+                 SelectedItem="{Binding SelectedFunction.cValue, Mode=TwoWay}"/>
+        <ComboBox x:Name="functionSelectComboBox"  Margin="0,45,574,0" VerticalAlignment="Top" Width="314" Height="40" HorizontalAlignment="Right" 
+            ItemsSource="{Binding functions}"
+            SelectedItem="{Binding SelectedFunction.functionPower, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Margin="0,5">
+                        <TextBlock Text="{Binding Path=functionPower, Converter={StaticResource EnumConverter}}"
+                                       FontSize="14"
+                                       FontFamily="Arial"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="2,0,0,0" />
+                    </DockPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Grid>
 </Window>

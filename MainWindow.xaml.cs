@@ -20,7 +20,8 @@ namespace FunctionApp
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new FunctionViewModel(); 
+            var functionViewModel = new FunctionViewModel();
+            DataContext = functionViewModel; 
         }
     }
 }

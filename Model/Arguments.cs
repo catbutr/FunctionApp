@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,10 @@ namespace FunctionApp.Model
         /// Вводимое пользователем значение Y и его конструктор
         /// </summary>
         [ObservableProperty]
-        public double yValue;
+        private double yValue;
+
+        [ObservableProperty]
+        private double result;
 
         public Arguments(double x, double y)
         {
@@ -33,8 +37,8 @@ namespace FunctionApp.Model
         /// <returns>Возвращает решение функции в формале double</returns>
         //public double solution()
         //{
-            //double solution = (aValue * Math.Pow(xValue, functionPower)) + (bValue * Math.Pow(yValue, functionPower - 1)) + cValue;
-            //return solution;
+        //double solution = (aValue * Math.Pow(xValue, functionPower)) + (bValue * Math.Pow(yValue, functionPower - 1)) + cValue;
+        //return solution;
         //}
     }
 }

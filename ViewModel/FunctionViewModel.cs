@@ -7,26 +7,29 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FunctionApp.Model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FunctionApp.ViewModel
 {
     public partial class FunctionViewModel : ObservableObject
     {
         [ObservableProperty]
-        public string testString = "sadsadd";
+        public PolynomialFunction selectedFunction;
 
+        public ObservableCollection<PolynomialFunction> functions { get; set; }
 
-        [ObservableProperty]
-        private ObservableCollection<Function> _functions;
-
-        public ObservableCollection<Function> functions
+        public FunctionViewModel()
         {
-            get { return _functions; }
-            set { SetProperty(ref _functions, value); }
+            functions = new ObservableCollection<PolynomialFunction>();
+
+            for (int i = 1; i <= 5; i++)
+            {
+                var function = new PolynomialFunction(i);
+                functions.Add(function);
+            }
+
+            selectedFunction = functions.First();
         }
-        private void LoadFunctions()
-        {
-        }
-        public FunctionViewModel() => LoadFunctions();
+
     }
 }
