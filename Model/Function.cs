@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,8 @@ namespace FunctionApp.Model
         /// Степень функции
         /// </summary>
         private int _functionPower;
+
+        public ObservableCollection<int> possibleValuesOfC;
 
         /// <summary>
         /// Конструктор степени функции

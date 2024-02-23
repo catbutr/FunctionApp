@@ -13,7 +13,12 @@ namespace FunctionApp.ViewModel
     public partial class FunctionViewModel : ObservableObject
     {
         [ObservableProperty]
+        public string testString = "sadsadd";
+
+
+        [ObservableProperty]
         private ObservableCollection<Function> _functions;
+
         public ObservableCollection<Function> functions
         {
             get { return _functions; }

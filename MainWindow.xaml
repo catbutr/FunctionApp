@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FunctionApp"
+        xmlns:local="clr-namespace:FunctionApp" xmlns:viewmodel="clr-namespace:FunctionApp.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:FunctionViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="511" Width="898">
     <Grid>
@@ -17,7 +17,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Коэффициент А"  Margin="10,98,0,0" VerticalAlignment="Top" Height="55" Width="123" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="aTextBox"  Height="40" Margin="138,107,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.675,0.476" HorizontalAlignment="Left"/>
+        <TextBox x:Name="aTextBox"  Height="40" Margin="138,107,0,0" TextWrapping="Wrap" Text="{Binding TestString, UpdateSourceTrigger=PropertyChanged, Mode= TwoWay}" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.675,0.476" HorizontalAlignment="Left"/>
         <Label Content="Коэффициент B"  Margin="-150,90,0,0" VerticalAlignment="Top" Height="70" Width="136" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox x:Name="bTextBox"  Height="40" Margin="110,107,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" HorizontalAlignment="Center"/>
         <Label Content="Коэффициент C"  Margin="0,90,140,0" VerticalAlignment="Top" Height="70" Width="136" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
