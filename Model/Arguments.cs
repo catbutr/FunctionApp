@@ -29,7 +29,7 @@ namespace FunctionApp.Model
         /// </summary>
         private double? yValue;
 
-        public double? YValvue
+        public double? YValue
         {
             get { return yValue; }
             set

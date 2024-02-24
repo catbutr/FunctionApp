@@ -18,10 +18,10 @@ namespace FunctionApp.Services
 
             foreach (Arguments arguments in function.argumentsList)
             {
-                if (arguments.XValue.HasValue && arguments.YValvue.HasValue)
+                if (arguments.XValue.HasValue && arguments.YValue.HasValue)
                 {
                     arguments.Result = function.AValue * Math.Pow(arguments.XValue.Value, function.functionPower) +
-                                       function.BValue * Math.Pow(arguments.YValvue.Value, function.functionPower - 1) +
+                                       function.BValue * Math.Pow(arguments.YValue.Value, function.functionPower - 1) +
                                        function.CValue;
                 }
                 else
