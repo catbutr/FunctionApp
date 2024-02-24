@@ -12,28 +12,32 @@ namespace FunctionApp.Model
     /// <summary>
     ///  Класс представляющий базовую функцию 
     /// </summary>
-    public class PolynomialFunction : ObservableObject
+    public partial class PolynomialFunction : ObservableObject
     {
 
         /// <summary>
         /// Вводимое пользователем значение A и его конструктор
         /// </summary>
-        public double aValue {  get; set; } = 0;
+        [ObservableProperty]
+        private double aValue;
 
         /// <summary>
         /// Вводимое пользователем значение B и его конструктор
         /// </summary>
-        public double bValue { get; set; } = 0;
+        [ObservableProperty]
+        private double bValue;
 
         /// <summary>
         /// Выбираемое пользователем значение С 
         /// </summary>
-        public double cValue { get; set; } = 0;
+        [ObservableProperty]
+        private double cValue;
 
         /// <summary>
         /// List of arguments
         /// </summary>
-        public ObservableCollection<Arguments> ArgumentsList { get; set; }
+        [ObservableProperty]
+        public ObservableCollection<Arguments> argumentsList;
 
         /// <summary>
         /// Available C coefficients

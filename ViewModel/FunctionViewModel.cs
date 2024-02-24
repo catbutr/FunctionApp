@@ -16,7 +16,8 @@ namespace FunctionApp.ViewModel
         [ObservableProperty]
         public PolynomialFunction selectedFunction;
 
-        public ObservableCollection<PolynomialFunction> functions { get; set; }
+        [ObservableProperty]
+        public ObservableCollection<PolynomialFunction> functions;
 
         public FunctionViewModel()
         {
@@ -30,6 +31,8 @@ namespace FunctionApp.ViewModel
 
             selectedFunction = functions.First();
         }
+
+
 
     }
 }
