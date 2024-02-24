@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm;
@@ -11,13 +13,21 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FunctionApp.ViewModel
 {
-    public partial class FunctionViewModel : ObservableObject
+    public partial class FunctionViewModel : INotifyPropertyChanged
     {
-        [ObservableProperty]
-        public PolynomialFunction selectedFunction;
+        private PolynomialFunction selectedFunction;
 
-        [ObservableProperty]
-        public ObservableCollection<PolynomialFunction> functions;
+        public PolynomialFunction SelectedFunction
+        {
+            get => selectedFunction;
+            set
+            {
+                selectedFunction = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<PolynomialFunction> functions;
 
         public FunctionViewModel()
         {
@@ -32,7 +42,10 @@ namespace FunctionApp.ViewModel
             selectedFunction = functions.First();
         }
 
-
-
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

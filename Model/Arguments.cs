@@ -3,34 +3,59 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FunctionApp.Model
 {
-    public partial class Arguments: ObservableObject
+    public partial class Arguments: INotifyPropertyChanged
     {
         /// <summary>
         /// Вводимое пользователем значение X и его конструктор
         /// </summary>
-        [ObservableProperty]
         private double xValue;
+
+        public double XValue
+        {
+            get { return xValue; }
+            set { xValue = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Вводимое пользователем значение Y и его конструктор
         /// </summary>
-        [ObservableProperty]
         private double yValue;
 
-        [ObservableProperty]
+        public double YValvue
+        {
+            get { return yValue; }
+            set
+            {
+                yValue = value;
+                OnPropertyChanged();
+            }
+        }
         private double result;
 
-        public Arguments(double x, double y)
+        public double Result
         {
-            xValue = x;
-            yValue = y;
+            get { return result; }
+            set
+            {
+                result = value;
+                OnPropertyChanged();
+            }
         }
 
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         /// <summary>
         /// Решение функции
         /// </summary>

@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -12,32 +15,57 @@ namespace FunctionApp.Model
     /// <summary>
     ///  Класс представляющий базовую функцию 
     /// </summary>
-    public partial class PolynomialFunction : ObservableObject
+    public partial class PolynomialFunction : INotifyPropertyChanged
     {
 
         /// <summary>
         /// Вводимое пользователем значение A и его конструктор
         /// </summary>
-        [ObservableProperty]
         private double aValue;
+
+        public double AValue
+        {
+            get { return aValue; }
+            set
+            {
+                aValue = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Вводимое пользователем значение B и его конструктор
         /// </summary>
-        [ObservableProperty]
         private double bValue;
+        public double BValue
+        {
+            get { return bValue; }
+            set
+            {
+                bValue = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Выбираемое пользователем значение С 
         /// </summary>
-        [ObservableProperty]
         private double cValue;
+
+        public double CValue
+        {
+            get { return cValue; }
+            set
+            {
+                cValue = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// List of arguments
         /// </summary>
-        [ObservableProperty]
-        public ObservableCollection<Arguments> argumentsList;
+        public ObservableCollection<Arguments> argumentsList { get; set; }
 
         /// <summary>
         /// Available C coefficients
@@ -49,7 +77,9 @@ namespace FunctionApp.Model
         /// </summary>
         private int _functionPower;
 
-        public ObservableCollection<int> possibleValuesOfC;
+        public List<int> possibleValuesOfC;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Конструктор степени функции
@@ -67,7 +97,8 @@ namespace FunctionApp.Model
 
         public PolynomialFunction(int power)
         {
-            ArgumentsList = new ObservableCollection<Arguments>();
+            argumentsList = new ObservableCollection<Arguments>();
+            argumentsList.CollectionChanged += OnArgumentsListChanged;
             functionPower = power;
             availableCoefficientsOfC = new List<double>();
 
@@ -77,6 +108,54 @@ namespace FunctionApp.Model
             }
 
             cValue = availableCoefficientsOfC.FirstOrDefault();
+        }
+
+        private void OnArgumentsListChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    if (e.NewItems == null)
+                    {
+                        break;
+                    }
+
+                    foreach (object item in e.NewItems)
+                    {
+                        if (item is Arguments arguments)
+                        {
+                            arguments.PropertyChanged += OnArgumentsChanged;
+                        }
+                    }
+
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    if (e.OldItems == null)
+                    {
+                        break;
+                    }
+
+                    foreach (object item in e.OldItems)
+                    {
+                        if (item is Arguments arguments)
+                        {
+                            arguments.PropertyChanged -= OnArgumentsChanged;
+                        }
+                    }
+
+                    break;
+            }
+        }
+
+        private void OnArgumentsChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(e.PropertyName);
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
