@@ -14,9 +14,9 @@ namespace FunctionApp.Model
         /// <summary>
         /// Вводимое пользователем значение X и его конструктор
         /// </summary>
-        private double xValue;
+        private double? xValue;
 
-        public double XValue
+        public double? XValue
         {
             get { return xValue; }
             set { xValue = value;
@@ -27,9 +27,9 @@ namespace FunctionApp.Model
         /// <summary>
         /// Вводимое пользователем значение Y и его конструктор
         /// </summary>
-        private double yValue;
+        private double? yValue;
 
-        public double YValvue
+        public double? YValvue
         {
             get { return yValue; }
             set
@@ -38,9 +38,9 @@ namespace FunctionApp.Model
                 OnPropertyChanged();
             }
         }
-        private double result;
+        private double? result;
 
-        public double Result
+        public double? Result
         {
             get { return result; }
             set

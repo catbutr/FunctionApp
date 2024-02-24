@@ -21,9 +21,9 @@ namespace FunctionApp.Model
         /// <summary>
         /// Вводимое пользователем значение A и его конструктор
         /// </summary>
-        private double aValue;
+        private double? aValue;
 
-        public double AValue
+        public double? AValue
         {
             get { return aValue; }
             set
@@ -36,8 +36,8 @@ namespace FunctionApp.Model
         /// <summary>
         /// Вводимое пользователем значение B и его конструктор
         /// </summary>
-        private double bValue;
-        public double BValue
+        private double? bValue;
+        public double? BValue
         {
             get { return bValue; }
             set
@@ -50,9 +50,9 @@ namespace FunctionApp.Model
         /// <summary>
         /// Выбираемое пользователем значение С 
         /// </summary>
-        private double cValue;
+        private double? cValue;
 
-        public double CValue
+        public double? CValue
         {
             get { return cValue; }
             set
@@ -93,6 +93,11 @@ namespace FunctionApp.Model
                     throw new ArgumentException("Function can only have power from 1 to 5.");
                 _functionPower = value;
             }
+        }
+
+        public bool AreCoefficientsSet()
+        {
+            return AValue.HasValue && BValue.HasValue && CValue.HasValue;
         }
 
         public PolynomialFunction(int power)
