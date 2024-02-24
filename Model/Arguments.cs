@@ -56,14 +56,5 @@ namespace FunctionApp.Model
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        /// <summary>
-        /// Решение функции
-        /// </summary>
-        /// <returns>Возвращает решение функции в формале double</returns>
-        //public double solution()
-        //{
-        //double solution = (aValue * Math.Pow(xValue, functionPower)) + (bValue * Math.Pow(yValue, functionPower - 1)) + cValue;
-        //return solution;
-        //}
     }
 }

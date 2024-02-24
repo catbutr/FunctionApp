@@ -70,7 +70,7 @@ namespace FunctionApp.Model
         /// <summary>
         /// Available C coefficients
         /// </summary>
-        public List<double> availableCoefficientsOfC { get; set;}
+        public List<double?> availableCoefficientsOfC { get; set;}
 
         /// <summary>
         /// Степень функции
@@ -105,7 +105,7 @@ namespace FunctionApp.Model
             argumentsList = new ObservableCollection<Arguments>();
             argumentsList.CollectionChanged += OnArgumentsListChanged;
             functionPower = power;
-            availableCoefficientsOfC = new List<double>();
+            availableCoefficientsOfC = new List<double?>();
 
             for (int i = 1; i <= 5; i++)
             {

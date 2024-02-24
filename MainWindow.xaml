@@ -16,10 +16,10 @@
         
         <ComboBox x:Name="cComboBox"  Margin="0,107,10,0" VerticalAlignment="Top" Width="125" Height="40" HorizontalAlignment="Right" 
                   ItemsSource="{Binding SelectedFunction.availableCoefficientsOfC}"
-                 SelectedItem="{Binding SelectedFunction, Mode=TwoWay, Converter={StaticResource EnumConverter}}"/>
+                 SelectedItem="{Binding SelectedFunction.CValue, Mode=TwoWay, Converter={StaticResource EnumConverter}}"/>
         <ComboBox x:Name="functionSelectComboBox"  Margin="0,45,0,0" VerticalAlignment="Top" Width="314" Height="40" HorizontalAlignment="Center" 
             ItemsSource="{Binding functions}"
-            SelectedItem="{Binding SelectedFunction.functionPower, Mode=TwoWay, Converter={StaticResource EnumConverter}}">
+            SelectedItem="{Binding SelectedFunction, Mode=TwoWay, Converter={StaticResource EnumConverter}}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
