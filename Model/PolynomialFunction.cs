@@ -13,16 +13,19 @@ using System.Windows.Controls;
 namespace FunctionApp.Model
 {
     /// <summary>
-    ///  Класс представляющий базовую функцию 
+    ///  Класс представляющий полиноминальную функцию 
     /// </summary>
     public partial class PolynomialFunction : INotifyPropertyChanged
     {
 
         /// <summary>
-        /// Вводимое пользователем значение A и его конструктор
+        /// Вводимое пользователем значение A
         /// </summary>
         private double? _valueOfA;
 
+        /// <summary>
+        /// Конструктор _valueOfA
+        /// </summary>
         public double? valueOfA
         {
             get { return _valueOfA; }
@@ -34,9 +37,13 @@ namespace FunctionApp.Model
         }
 
         /// <summary>
-        /// Вводимое пользователем значение B и его конструктор
+        /// Вводимое пользователем значение B
         /// </summary>
         private double? _valueOfB;
+
+        /// <summary>
+        /// Конструктор _valueOfB
+        /// </summary>
         public double? valueOfB
         {
             get { return _valueOfB; }
@@ -52,6 +59,9 @@ namespace FunctionApp.Model
         /// </summary>
         private double? _valueOfC;
 
+        /// <summary>
+        /// Конструктор _valueOfC
+        /// </summary>
         public double? valueOfC
         {
             get { return _valueOfC; }
@@ -63,12 +73,12 @@ namespace FunctionApp.Model
         }
 
         /// <summary>
-        /// List of arguments
+        /// Коллекция аргументов X и Y функции
         /// </summary>
         public ObservableCollection<Arguments> argumentsList { get; set; }
 
         /// <summary>
-        /// Available C coefficients
+        /// Список со всеми возможными значениями коэффицента C
         /// </summary>
         public List<double?> possibleValuesOfC { get; set;}
 
@@ -93,11 +103,19 @@ namespace FunctionApp.Model
             }
         }
 
-        public bool AreCoefficientsSet()
+        /// <summary>
+        /// Проверка значений на null 
+        /// </summary>
+        /// <returns>Наличие или отсутсвие значения каждого коэффицента</returns>
+        public bool AreValuesSet()
         {
             return valueOfA.HasValue && valueOfB.HasValue && valueOfC.HasValue;
         }
 
+        /// <summary>
+        /// Конструктор функции
+        /// </summary>
+        /// <param name="power">Степень функции</param>
         public PolynomialFunction(int power)
         {
             argumentsList = new ObservableCollection<Arguments>();
@@ -111,6 +129,11 @@ namespace FunctionApp.Model
             _valueOfC = possibleValuesOfC.FirstOrDefault();
         }
 
+        /// <summary>
+        /// Обработчик события изменения argumentsList
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnArgumentsListChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -149,11 +172,20 @@ namespace FunctionApp.Model
             }
         }
 
+        /// <summary>
+        /// Обработчик события изменения члена-типа arguments
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnArgumentsChanged(object? sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e.PropertyName);
         }
 
+        /// <summary>
+        /// Обработчик события изменения свойства класса
+        /// </summary>
+        /// <param name="propertyName"></param>
         private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

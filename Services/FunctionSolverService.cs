@@ -11,7 +11,7 @@ namespace FunctionApp.Services
     {
         public void Calculate(PolynomialFunction function)
         {
-            if (!function.AreCoefficientsSet())
+            if (!function.AreValuesSet())
             {
                 return;
             }

@@ -9,26 +9,37 @@ using System.Threading.Tasks;
 
 namespace FunctionApp.Model
 {
+    /// <summary>
+    /// Представление выводимых в таблицу аргументов X и Y полиминальной функции, а также её решение
+    /// </summary>
     public partial class Arguments: INotifyPropertyChanged
     {
         /// <summary>
-        /// Вводимое пользователем значение X и его конструктор
+        /// Вводимое пользователем значение X
         /// </summary>
         private double? _valueOfX;
 
+        /// <summary>
+        /// Конструктор _valueOfX
+        /// </summary>
         public double? valueOfX
         {
             get { return _valueOfX; }
-            set { _valueOfX = value;
+            set 
+            { 
+                _valueOfX = value;
                 OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Вводимое пользователем значение Y и его конструктор
+        /// Вводимое пользователем значение Y
         /// </summary>
         private double? _valueOfY;
 
+        /// <summary>
+        /// Конструктор _valueOfY
+        /// </summary>
         public double? valueOfY
         {
             get { return _valueOfY; }
@@ -38,8 +49,15 @@ namespace FunctionApp.Model
                 OnPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Результат вычисления полиноминальной функции
+        /// </summary>
         private double? _result;
 
+        /// <summary>
+        /// Конструктор _result
+        /// </summary>
         public double? result
         {
             get { return _result; }
@@ -50,8 +68,15 @@ namespace FunctionApp.Model
             }
         }
 
+        /// <summary>
+        /// Событие изменения свойства класса
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        /// <summary>
+        /// Обработчик события изменения свойства класса
+        /// </summary>
+        /// <param name="propertyName"></param>
         private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

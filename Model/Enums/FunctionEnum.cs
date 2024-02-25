@@ -7,21 +7,24 @@ using System.Threading.Tasks;
 
 namespace FunctionApp.Enums
 {
+    /// <summary>
+    /// Перечисляемый тип названий полиномиальной функции
+    /// </summary>
     public enum FunctionEnum
     {
         [Description("Линейная функция")]
-        First = 1,
+        One = 1,
 
         [Description("Квадратическая функция")]
-        Second = 2,
+        Two = 2,
 
         [Description("Функция третьей степени")]
-        Third = 3,
+        Three = 3,
 
         [Description("Функция четвертой степени")]
-        Forth = 4,
+        Four = 4,
 
         [Description("Функция пятой степени")]
-        Fifth = 5,
+        Five = 5,
     }
 }
