@@ -14,12 +14,12 @@ namespace FunctionApp.Model
         /// <summary>
         /// Вводимое пользователем значение X и его конструктор
         /// </summary>
-        private double? xValue;
+        private double? _valueOfX;
 
-        public double? XValue
+        public double? valueOfX
         {
-            get { return xValue; }
-            set { xValue = value;
+            get { return _valueOfX; }
+            set { _valueOfX = value;
                 OnPropertyChanged();
             }
         }
@@ -27,25 +27,25 @@ namespace FunctionApp.Model
         /// <summary>
         /// Вводимое пользователем значение Y и его конструктор
         /// </summary>
-        private double? yValue;
+        private double? _valueOfY;
 
-        public double? YValue
+        public double? valueOfY
         {
-            get { return yValue; }
+            get { return _valueOfY; }
             set
             {
-                yValue = value;
+                _valueOfY = value;
                 OnPropertyChanged();
             }
         }
-        private double? result;
+        private double? _result;
 
-        public double? Result
+        public double? result
         {
-            get { return result; }
+            get { return _result; }
             set
             {
-                result = value;
+                _result = value;
                 OnPropertyChanged();
             }
         }

@@ -16,19 +16,19 @@ namespace FunctionApp.ViewModel
 {
     public partial class FunctionViewModel : INotifyPropertyChanged
     {
-        private PolynomialFunction selectedFunction;
+        private PolynomialFunction _selectedFunction;
         private readonly FunctionSolverService _solverService;
-        public PolynomialFunction SelectedFunction
+        public PolynomialFunction selectedFunction
         {
-            get => selectedFunction;
+            get => _selectedFunction;
             set
             {
-                selectedFunction = value;
+                _selectedFunction = value;
                 OnPropertyChanged();
             }
         }
 
-        public ObservableCollection<PolynomialFunction> functions { get; }
+        public ObservableCollection<PolynomialFunction> functions { get; set; }
 
         public FunctionViewModel()
         {
@@ -42,7 +42,7 @@ namespace FunctionApp.ViewModel
                 functions.Add(function);
             }
 
-            selectedFunction = functions.First();
+            _selectedFunction = functions.First();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -58,7 +58,7 @@ namespace FunctionApp.ViewModel
                 return;
             }
 
-            if (e.PropertyName == nameof(Arguments.Result))
+            if (e.PropertyName == nameof(Arguments.result))
             {
                 return;
             }

@@ -9,17 +9,17 @@
         Title="MainWindow" Height="511" Width="898">
     <Grid>
         <Label Content="Коэффициент А"  Margin="10,98,0,0" VerticalAlignment="Top" Height="55" Width="123" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="aTextBox"  Height="40" Margin="138,107,0,0" TextWrapping="Wrap" Text="{Binding SelectedFunction.AValue, Mode=TwoWay}" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.675,0.476" HorizontalAlignment="Left"/>
+        <TextBox x:Name="aTextBox"  Height="40" Margin="138,107,0,0" TextWrapping="Wrap" Text="{Binding selectedFunction.valueOfA, Mode=TwoWay}" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.675,0.476" HorizontalAlignment="Left"/>
         <Label Content="Коэффициент B"  Margin="-150,90,0,0" VerticalAlignment="Top" Height="70" Width="136" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="bTextBox"  Height="40" Margin="110,107,0,0" TextWrapping="Wrap" Text="{Binding SelectedFunction.BValue, Mode=TwoWay}" VerticalAlignment="Top" Width="112" HorizontalAlignment="Center"/>
+        <TextBox x:Name="bTextBox"  Height="40" Margin="110,107,0,0" TextWrapping="Wrap" Text="{Binding selectedFunction.valueOfB, Mode=TwoWay}" VerticalAlignment="Top" Width="112" HorizontalAlignment="Center"/>
         <Label Content="Коэффициент C"  Margin="0,90,140,0" VerticalAlignment="Top" Height="70" Width="136" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         
         <ComboBox x:Name="cComboBox"  Margin="0,107,10,0" VerticalAlignment="Top" Width="125" Height="40" HorizontalAlignment="Right" 
-                  ItemsSource="{Binding SelectedFunction.availableCoefficientsOfC}"
-                 SelectedItem="{Binding SelectedFunction.CValue, Mode=TwoWay, Converter={StaticResource EnumConverter}}"/>
+                  ItemsSource="{Binding selectedFunction.possibleValuesOfC}"
+                 SelectedItem="{Binding selectedFunction.valueOfC, Mode=TwoWay, Converter={StaticResource EnumConverter}}"/>
         <ComboBox x:Name="functionSelectComboBox"  Margin="0,45,0,0" VerticalAlignment="Top" Width="314" Height="40" HorizontalAlignment="Center" 
             ItemsSource="{Binding functions}"
-            SelectedItem="{Binding SelectedFunction, Mode=TwoWay, Converter={StaticResource EnumConverter}}">
+            SelectedItem="{Binding selectedFunction, Mode=TwoWay, Converter={StaticResource EnumConverter}}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
@@ -31,11 +31,11 @@
         <DataGrid Name ="FunctionTable" Margin="0,217,0,0" ClipToBounds="True" Background="Lavender" 
                   CanUserAddRows="True" CanUserDeleteRows="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   IsEnabled ="True"
-                  ItemsSource="{Binding SelectedFunction.argumentsList}" AutoGenerateColumns="False">
+                  ItemsSource="{Binding selectedFunction.argumentsList}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="x" Binding="{Binding XValue, Mode=TwoWay}"  Width="*" IsReadOnly="False" />
-                <DataGridTextColumn Header="y" Binding="{Binding YValue, Mode=TwoWay}"  Width="*" IsReadOnly="False" />
-                <DataGridTextColumn Header="f(x,y)" Binding="{Binding Result, Mode=TwoWay}"  Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="x" Binding="{Binding valueOfX, Mode=TwoWay}"  Width="*" IsReadOnly="False" />
+                <DataGridTextColumn Header="y" Binding="{Binding valueOfY, Mode=TwoWay}"  Width="*" IsReadOnly="False" />
+                <DataGridTextColumn Header="f(x,y)" Binding="{Binding result, Mode=TwoWay}"  Width="*" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

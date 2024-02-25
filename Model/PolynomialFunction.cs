@@ -21,14 +21,14 @@ namespace FunctionApp.Model
         /// <summary>
         /// Вводимое пользователем значение A и его конструктор
         /// </summary>
-        private double? aValue;
+        private double? _valueOfA;
 
-        public double? AValue
+        public double? valueOfA
         {
-            get { return aValue; }
+            get { return _valueOfA; }
             set
             {
-                aValue = value;
+                _valueOfA = value;
                 OnPropertyChanged();
             }
         }
@@ -36,13 +36,13 @@ namespace FunctionApp.Model
         /// <summary>
         /// Вводимое пользователем значение B и его конструктор
         /// </summary>
-        private double? bValue;
-        public double? BValue
+        private double? _valueOfB;
+        public double? valueOfB
         {
-            get { return bValue; }
+            get { return _valueOfB; }
             set
             {
-                bValue = value;
+                _valueOfB = value;
                 OnPropertyChanged();
             }
         }
@@ -50,14 +50,14 @@ namespace FunctionApp.Model
         /// <summary>
         /// Выбираемое пользователем значение С 
         /// </summary>
-        private double? cValue;
+        private double? _valueOfC;
 
-        public double? CValue
+        public double? valueOfC
         {
-            get { return cValue; }
+            get { return _valueOfC; }
             set
             {
-                cValue = value;
+                _valueOfC = value;
                 OnPropertyChanged();
             }
         }
@@ -70,14 +70,12 @@ namespace FunctionApp.Model
         /// <summary>
         /// Available C coefficients
         /// </summary>
-        public List<double?> availableCoefficientsOfC { get; set;}
+        public List<double?> possibleValuesOfC { get; set;}
 
         /// <summary>
         /// Степень функции
         /// </summary>
         private int _functionPower;
-
-        public List<int> possibleValuesOfC;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -97,7 +95,7 @@ namespace FunctionApp.Model
 
         public bool AreCoefficientsSet()
         {
-            return AValue.HasValue && BValue.HasValue && CValue.HasValue;
+            return valueOfA.HasValue && valueOfB.HasValue && valueOfC.HasValue;
         }
 
         public PolynomialFunction(int power)
@@ -105,14 +103,12 @@ namespace FunctionApp.Model
             argumentsList = new ObservableCollection<Arguments>();
             argumentsList.CollectionChanged += OnArgumentsListChanged;
             functionPower = power;
-            availableCoefficientsOfC = new List<double?>();
-
+            possibleValuesOfC = new List<double?>();
             for (int i = 1; i <= 5; i++)
             {
-                availableCoefficientsOfC.Add(i * Math.Pow(10, functionPower - 1));
+                possibleValuesOfC.Add(i * Math.Pow(10, functionPower - 1));
             }
-
-            cValue = availableCoefficientsOfC.FirstOrDefault();
+            _valueOfC = possibleValuesOfC.FirstOrDefault();
         }
 
         private void OnArgumentsListChanged(object? sender, NotifyCollectionChangedEventArgs e)
