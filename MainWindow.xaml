@@ -8,27 +8,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="511" Width="898">
     <Grid>
-        <Label Content="Коэффициент А"  Margin="638,37,0,0" VerticalAlignment="Top" Height="50" Width="115" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.365,0.541"/>
-        <TextBox x:Name="aTextBox"  Height="36" Margin="763,44,0,0" TextWrapping="Wrap" Text="{Binding selectedFunction.valueOfA, Mode=TwoWay}" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.675,0.476" HorizontalAlignment="Left"/>
-        <Label Content="Коэффициент B"  Margin="628,98,0,0" VerticalAlignment="Top" Height="40" Width="125" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="bTextBox"  Height="40" Margin="763,98,0,0" TextWrapping="Wrap" Text="{Binding selectedFunction.valueOfB, Mode=TwoWay}" VerticalAlignment="Top" Width="125" HorizontalAlignment="Left"/>
-        <Label Content="Коэффициент C"  Margin="0,156,145,0" VerticalAlignment="Top" Height="40" Width="125" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Grid x:Name="valuesGrid" HorizontalAlignment="Right" Height="159" VerticalAlignment="Top" Width="260" Margin="0,44,10,0">
+            <Label Content="Коэффициент А" VerticalAlignment="Top" Height="50" Width="125" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.365,0.541"/>
+            <TextBox x:Name="aTextBox"  Height="36" Margin="135,7,0,0" TextWrapping="Wrap" Text="{Binding selectedFunction.valueOfA, Mode=TwoWay}" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.675,0.476" HorizontalAlignment="Left"/>
+            <Label Content="Коэффициент B"  Margin="0,61,0,0" VerticalAlignment="Top" Height="40" Width="125" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="bTextBox"  Height="40" Margin="135,61,0,0" TextWrapping="Wrap" Text="{Binding selectedFunction.valueOfB, Mode=TwoWay}" VerticalAlignment="Top" Width="125" HorizontalAlignment="Left"/>
+            <Label Content="Коэффициент C"  Margin="0,119,135,0" VerticalAlignment="Top" Height="40" Width="125" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <ComboBox x:Name="cComboBox"  Margin="0,156,10,0" VerticalAlignment="Top" Width="125" Height="40" HorizontalAlignment="Right" 
-                  ItemsSource="{Binding selectedFunction.possibleValuesOfC}"
-                 SelectedItem="{Binding selectedFunction.valueOfC, Mode=TwoWay, Converter={StaticResource EnumConverter}}"/>
+            <ComboBox x:Name="cComboBox"  Margin="0,119,0,0" VerticalAlignment="Top" Width="125" Height="40" HorizontalAlignment="Right" 
+            ItemsSource="{Binding selectedFunction.possibleValuesOfC}"
+            SelectedItem="{Binding selectedFunction.valueOfC, Converter={StaticResource EnumConverter}, Mode=TwoWay}"/>
+        </Grid>
         <ListBox x:Name="functionSelectListBox"  Margin="10,44,0,0" VerticalAlignment="Top" Width="307" Height="152" HorizontalAlignment="Left" 
             ItemsSource="{Binding functions}"
-            SelectedItem="{Binding selectedFunction, Mode=TwoWay, Converter={StaticResource EnumConverter}}">
+            SelectedItem="{Binding selectedFunction, Converter={StaticResource EnumConverter}, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
-                        <TextBlock Text="{Binding Path=functionPower, Converter={StaticResource EnumConverter}}"/>
+                        <TextBlock Text="{Binding functionPower, Converter={StaticResource EnumConverter}}"/>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <DataGrid Name ="FunctionTable" Margin="0,217,0,0" ClipToBounds="True" Background="Lavender" 
+        <DataGrid x:Name ="FunctionTable" Margin="0,217,0,0" ClipToBounds="True" Background="Lavender" 
                   CanUserAddRows="True" CanUserDeleteRows="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   IsEnabled ="True"
                   ItemsSource="{Binding selectedFunction.argumentsList}" AutoGenerateColumns="False">
