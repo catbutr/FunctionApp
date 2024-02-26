@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,6 +44,31 @@ namespace FunctionApp.Controls
                 e.Handled = true;
             }
             base.OnKeyDown(e);
+        }
+
+        /// <summary>
+        /// Метод защиты от копирования
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPaste(object sender, DataObjectPastingEventArgs e)
+        {
+            var data = e.SourceDataObject.GetData(DataFormats.Text);
+            if (!IsValidNumericInput(data.ToString()))
+            {
+                e.CancelCommand();
+            }
+        }
+
+        /// <summary>
+        /// Метод проверки на числовое значение при помощи регулярных выражений
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private static bool IsValidNumericInput(string input)
+        {
+            const string numericPattern = @"^-?[0-9]*(?:\.[0-9]*)?$";
+            return Regex.IsMatch(input, numericPattern);
         }
     }
 }
