@@ -126,7 +126,7 @@ namespace FunctionApp.Model
             {
                 possibleValuesOfC.Add(i * Math.Pow(10, functionPower - 1));
             }
-            _valueOfC = possibleValuesOfC.FirstOrDefault();
+            valueOfC = possibleValuesOfC.FirstOrDefault();
         }
 
         /// <summary>
