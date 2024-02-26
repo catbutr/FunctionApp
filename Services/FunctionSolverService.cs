@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace FunctionApp.Services
 {
+    /// <summary>
+    /// Сервис по решению функций
+    /// </summary>
     public class FunctionSolverService
     {
+        /// <summary>
+        /// Метод расчёт значения функции
+        /// </summary>
+        /// <param name="function">Полиноминальная функция</param>
         public void Calculate(PolynomialFunction function)
         {
             if (!function.AreValuesSet())

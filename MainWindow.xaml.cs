@@ -23,5 +23,10 @@ namespace FunctionApp
             var functionViewModel = new FunctionViewModel();
             DataContext = functionViewModel; 
         }
+
+        private void bTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
