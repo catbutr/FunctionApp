@@ -22,7 +22,7 @@ namespace FunctionApp.Model
         /// <summary>
         /// Конструктор _valueOfX
         /// </summary>
-        public double? valueOfX
+        public double? ValueOfX
         {
             get { return _valueOfX; }
             set 
@@ -40,7 +40,7 @@ namespace FunctionApp.Model
         /// <summary>
         /// Конструктор _valueOfY
         /// </summary>
-        public double? valueOfY
+        public double? ValueOfY
         {
             get { return _valueOfY; }
             set
@@ -58,7 +58,7 @@ namespace FunctionApp.Model
         /// <summary>
         /// Конструктор _result
         /// </summary>
-        public double? result
+        public double? Result
         {
             get { return _result; }
             set

@@ -23,17 +23,17 @@ namespace FunctionApp.Services
                 return;
             }
 
-            foreach (Arguments arguments in function.argumentsList)
+            foreach (Arguments arguments in function.ArgumentsList)
             {
-                if (arguments.valueOfX.HasValue && arguments.valueOfY.HasValue)
+                if (arguments.ValueOfX.HasValue && arguments.ValueOfY.HasValue)
                 {
-                    arguments.result = function.valueOfA * Math.Pow(arguments.valueOfX.Value, function.functionPower) +
-                                       function.valueOfB * Math.Pow(arguments.valueOfY.Value, function.functionPower - 1) +
-                                       function.valueOfC;
+                    arguments.Result = function.ValueOfA * Math.Pow(arguments.ValueOfX.Value, function.FunctionPower) +
+                                       function.ValueOfB * Math.Pow(arguments.ValueOfY.Value, function.FunctionPower - 1) +
+                                       function.ValueOfC;
                 }
                 else
                 {
-                    arguments.result = null;
+                    arguments.Result = null;
                 }
             }
         }

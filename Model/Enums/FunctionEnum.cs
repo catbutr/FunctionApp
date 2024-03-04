@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FunctionApp.Enums
+namespace FunctionApp.Model.Enums
 {
     /// <summary>
     /// Перечисляемый тип названий полиномиальной функции

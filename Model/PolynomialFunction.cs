@@ -26,7 +26,7 @@ namespace FunctionApp.Model
         /// <summary>
         /// Конструктор _valueOfA
         /// </summary>
-        public double? valueOfA
+        public double? ValueOfA
         {
             get { return _valueOfA; }
             set
@@ -44,7 +44,7 @@ namespace FunctionApp.Model
         /// <summary>
         /// Конструктор _valueOfB
         /// </summary>
-        public double? valueOfB
+        public double? ValueOfB
         {
             get { return _valueOfB; }
             set
@@ -62,7 +62,7 @@ namespace FunctionApp.Model
         /// <summary>
         /// Конструктор _valueOfC
         /// </summary>
-        public double? valueOfC
+        public double? ValueOfC
         {
             get { return _valueOfC; }
             set
@@ -75,12 +75,12 @@ namespace FunctionApp.Model
         /// <summary>
         /// Коллекция аргументов X и Y функции
         /// </summary>
-        public ObservableCollection<Arguments> argumentsList { get; set; }
+        public ObservableCollection<Arguments> ArgumentsList { get; set; }
 
         /// <summary>
         /// Список со всеми возможными значениями коэффицента C
         /// </summary>
-        public List<double?> possibleValuesOfC { get; set;}
+        public List<double?> PossibleValuesOfC { get; set;}
 
         /// <summary>
         /// Степень функции
@@ -92,7 +92,7 @@ namespace FunctionApp.Model
         /// <summary>
         /// Конструктор степени функции
         /// </summary>
-        public int functionPower
+        public int FunctionPower
         {
             get { return _functionPower; }
             set
@@ -109,7 +109,7 @@ namespace FunctionApp.Model
         /// <returns>Наличие или отсутсвие значения каждого коэффицента</returns>
         public bool AreValuesSet()
         {
-            return valueOfA.HasValue && valueOfB.HasValue && valueOfC.HasValue;
+            return ValueOfA.HasValue && ValueOfB.HasValue && ValueOfC.HasValue;
         }
 
         /// <summary>
@@ -118,15 +118,15 @@ namespace FunctionApp.Model
         /// <param name="power">Степень функции</param>
         public PolynomialFunction(int power)
         {
-            argumentsList = new ObservableCollection<Arguments>();
-            argumentsList.CollectionChanged += OnArgumentsListChanged;
-            functionPower = power;
-            possibleValuesOfC = new List<double?>();
+            ArgumentsList = new ObservableCollection<Arguments>();
+            ArgumentsList.CollectionChanged += OnArgumentsListChanged;
+            FunctionPower = power;
+            PossibleValuesOfC = new List<double?>();
             for (int i = 1; i <= 5; i++)
             {
-                possibleValuesOfC.Add(i * Math.Pow(10, functionPower - 1));
+                PossibleValuesOfC.Add(i * Math.Pow(10, FunctionPower - 1));
             }
-            valueOfC = possibleValuesOfC.FirstOrDefault();
+            ValueOfC = PossibleValuesOfC.FirstOrDefault();
         }
 
         /// <summary>

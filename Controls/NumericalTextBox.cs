@@ -38,26 +38,13 @@ namespace FunctionApp.Controls
                 case Key.D8: b = true; break;
                 case Key.D9: b = true; break;
                 case Key.OemPeriod: b = true; break;
+                case Key.OemMinus: b = true; break;
             }
             if (b == false)
             {
                 e.Handled = true;
             }
             base.OnKeyDown(e);
-        }
-
-        /// <summary>
-        /// Метод защиты от копирования
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnPaste(object sender, DataObjectPastingEventArgs e)
-        {
-            var data = e.SourceDataObject.GetData(DataFormats.Text);
-            if (!IsValidNumericInput(data.ToString()))
-            {
-                e.CancelCommand();
-            }
         }
 
         /// <summary>

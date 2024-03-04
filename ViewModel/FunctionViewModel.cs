@@ -27,7 +27,7 @@ namespace FunctionApp.ViewModel
         /// <summary>
         /// Конструктор _selectedFunction
         /// </summary>
-        public PolynomialFunction selectedFunction
+        public PolynomialFunction SelectedFunction
         {
             get => _selectedFunction;
             set
@@ -45,7 +45,7 @@ namespace FunctionApp.ViewModel
         /// <summary>
         /// Коллекция значений полиминальных функций 
         /// </summary>
-        public ObservableCollection<PolynomialFunction> functions { get; set; }
+        public ObservableCollection<PolynomialFunction> Functions { get; set; }
 
         /// <summary>
         /// Конструктор класса
@@ -53,16 +53,16 @@ namespace FunctionApp.ViewModel
         public FunctionViewModel()
         {
             _solverService = new FunctionSolverService();
-            functions = new ObservableCollection<PolynomialFunction>();
+            Functions = new ObservableCollection<PolynomialFunction>();
 
             for (int i = 1; i <= 5; i++)
             {
                 var function = new PolynomialFunction(i);
                 function.PropertyChanged += OnFunctionPropertyChanged;
-                functions.Add(function);
+                Functions.Add(function);
             }
 
-            _selectedFunction = functions.First();
+            _selectedFunction = Functions.First();
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace FunctionApp.ViewModel
                 return;
             }
 
-            if (e.PropertyName == nameof(Arguments.result))
+            if (e.PropertyName == nameof(Arguments.Result))
             {
                 return;
             }
