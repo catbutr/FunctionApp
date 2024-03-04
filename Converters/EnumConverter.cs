@@ -1,61 +1,56 @@
-﻿using FunctionApp.Model.Enums;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
+using FunctionApp.Model.Enums;
 
-namespace FunctionApp.Converters
+namespace FunctionApp.Converters;
+
+/// <summary>
+///     Конвертация FunctionEnum в int
+/// </summary>
+public class EnumConverter : IValueConverter
 {
     /// <summary>
-    /// Конвертация FunctionEnum в int
+    ///     Конвертация
     /// </summary>
-    public class EnumConverter : IValueConverter
+    /// <param name="value"></param>
+    /// <param name="targetType"></param>
+    /// <param name="parameter"></param>
+    /// <param name="culture"></param>
+    /// <returns></returns>
+    public object Convert(object value, Type targetType, object? parameter, CultureInfo culture)
     {
-        /// <summary>
-        /// Конвертация
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="targetType"></param>
-        /// <param name="parameter"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value is int ? GetDescription((FunctionEnum)value) : DependencyProperty.UnsetValue;
-        }
+        return value is int ? GetDescription((FunctionEnum)value) : DependencyProperty.UnsetValue;
+    }
 
-        /// <summary>
-        /// Обратная конвертация
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="targetType"></param>
-        /// <param name="parameter"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
+    /// <summary>
+    ///     Обратная конвертация
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="targetType"></param>
+    /// <param name="parameter"></param>
+    /// <param name="culture"></param>
+    /// <returns></returns>
+    public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        return value;
+    }
 
-        /// <summary>
-        /// Получение значения описания
-        /// </summary>
-        /// <param name="enumValue"></param>
-        /// <returns></returns>
-        private static string GetDescription(Enum enumValue)
-        {
-            Type type = enumValue.GetType();
-            MemberInfo[] memInfo = type.GetMember(enumValue.ToString());
+    /// <summary>
+    ///     Получение значения описания
+    /// </summary>
+    /// <param name="enumValue"></param>
+    /// <returns></returns>
+    private static string GetDescription(Enum enumValue)
+    {
+        var type = enumValue.GetType();
+        var memInfo = type.GetMember(enumValue.ToString());
 
-            if (memInfo.Length <= 0)
-            {
-                return enumValue.ToString();
-            }
+        if (memInfo.Length <= 0) return enumValue.ToString();
 
-            object[] attributes = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+        var attributes = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
 
-            return attributes.Length > 0 ? ((DescriptionAttribute)attributes[0]).Description : enumValue.ToString();
-        }
+        return attributes.Length > 0 ? ((DescriptionAttribute)attributes[0]).Description : enumValue.ToString();
     }
 }
