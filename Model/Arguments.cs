@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using FunctionApp.ViewModel;
 
 namespace FunctionApp.Model;
 
 /// <summary>
 ///     Представление выводимых в таблицу аргументов X и Y полиминальной функции, а также её решение
 /// </summary>
-public class Arguments : INotifyPropertyChanged
+public class Arguments : ViewModelBase
 {
     /// <summary>
     ///     Результат вычисления полиноминальной функции
@@ -60,19 +61,5 @@ public class Arguments : INotifyPropertyChanged
             _result = value;
             OnPropertyChanged();
         }
-    }
-
-    /// <summary>
-    ///     Событие изменения свойства класса
-    /// </summary>
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    /// <summary>
-    ///     Обработчик события изменения свойства класса
-    /// </summary>
-    /// <param name="propertyName"></param>
-    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

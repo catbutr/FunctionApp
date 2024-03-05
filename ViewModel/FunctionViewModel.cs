@@ -9,7 +9,7 @@ namespace FunctionApp.ViewModel;
 /// <summary>
 ///     ViewModel для работы с полиномиальными функциями
 /// </summary>
-public class FunctionViewModel : INotifyPropertyChanged
+public class FunctionViewModel : ViewModelBase
 {
     /// <summary>
     ///     Выбранная пользователем функция
@@ -50,20 +50,6 @@ public class FunctionViewModel : INotifyPropertyChanged
     ///     Коллекция значений полиминальных функций
     /// </summary>
     public ObservableCollection<PolynomialFunction> Functions { get; set; }
-
-    /// <summary>
-    ///     Событие изменения свойства класса
-    /// </summary>
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    /// <summary>
-    ///     Обработчик события изменения свойства класса
-    /// </summary>
-    /// <param name="propertyName"></param>
-    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 
     /// <summary>
     ///     Обработчик события изменения полиномиальной функции
