@@ -1,72 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace FunctionApp.Controls
+namespace FunctionApp.Controls;
+
+/// <summary>
+///     Класс колонки DataGrid, принимающий только числовые значения
+/// </summary>
+public partial class DataGridNumericalColumn : DataGridTextColumn
 {
     /// <summary>
-    /// Класс колонки DataGrid, принимающий только числовые значения
+    /// Регулярное выражение для численного ввода
     /// </summary>
-    public class DataGridNumericalColumn:DataGridTextColumn
+    /// <returns></returns>
+    [GeneratedRegex(@"^-?[0-9]*(?:\.[0-9]*)?$")]
+    private static partial Regex NumericPattern();
+
+    /// <summary>
+    ///     Переопределение события перехода ячейки в режим правки
+    /// </summary>
+    /// <param name="editingElement"></param>
+    /// <param name="editingEventArgs"></param>
+    /// <returns></returns>
+    protected override object? PrepareCellForEdit(FrameworkElement editingElement, RoutedEventArgs? editingEventArgs)
     {
-        /// <summary>
-        /// Переопределение события перехода ячейки в режим правки
-        /// </summary>
-        /// <param name="editingElement"></param>
-        /// <param name="editingEventArgs"></param>
-        /// <returns></returns>
-        protected override object PrepareCellForEdit(FrameworkElement editingElement, RoutedEventArgs editingEventArgs)
-        {
-            var textBox = editingElement as TextBox;
-            textBox.PreviewTextInput += OnPreviewTextInput;
-            DataObject.AddPastingHandler(textBox, OnPaste);
-            return base.PrepareCellForEdit(editingElement, editingEventArgs);
-        }
+        var textBox = editingElement as TextBox;
+        textBox!.PreviewTextInput += OnPreviewTextInput;
+        DataObject.AddPastingHandler(textBox, OnPaste);
+        return base.PrepareCellForEdit(editingElement, editingEventArgs);
+    }
 
-        /// <summary>
-        /// Метод проверки пользовательского ввода
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            var textBox = (TextBox)sender;
-            var proposedText = textBox.Text.Insert(textBox.CaretIndex, e.Text);
-            if (!IsValidNumericInput(proposedText))
-            {
-                e.Handled = true;
-            }
-        }
+    /// <summary>
+    ///     Метод проверки пользовательского ввода
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private static void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        var textBox = (TextBox)sender;
+        var proposedText = textBox.Text.Insert(textBox.CaretIndex, e.Text);
+        if (!IsValidNumericInput(proposedText)) e.Handled = true;
+    }
 
-        /// <summary>
-        /// Метод защиты от копирования
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnPaste(object sender, DataObjectPastingEventArgs e)
-        {
-            var data = e.SourceDataObject.GetData(DataFormats.Text);
-            if (!IsValidNumericInput(data.ToString()))
-            {
-                e.CancelCommand();
-            }
-        }
+    /// <summary>
+    ///     Метод защиты от копирования
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private static void OnPaste(object sender, DataObjectPastingEventArgs e)
+    {
+        var data = e.SourceDataObject.GetData(DataFormats.Text);
+        if (!IsValidNumericInput(data!.ToString()!)) e.CancelCommand();
+    }
 
-        /// <summary>
-        /// Метод проверки на числовое значение при помощи регулярных выражений
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        private static bool IsValidNumericInput(string input)
-        {
-            const string numericPattern = @"^-?[0-9]*(?:\.[0-9]*)?$";
-            return Regex.IsMatch(input, numericPattern);
-        }
+    /// <summary>
+    ///     Метод проверки на числовое значение при помощи регулярных выражений
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    private static bool IsValidNumericInput(string input)
+    {
+        return NumericPattern().IsMatch(input);
     }
 }

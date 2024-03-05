@@ -1,41 +1,26 @@
 ﻿using FunctionApp.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FunctionApp.Services
+namespace FunctionApp.Services;
+
+/// <summary>
+///     Сервис по решению функций
+/// </summary>
+public class FunctionSolverService
 {
     /// <summary>
-    /// Сервис по решению функций
+    ///     Метод расчёт значения функции
     /// </summary>
-    public class FunctionSolverService
+    /// <param name="function">Полиноминальная функция</param>
+    public static void Calculate(PolynomialFunction function)
     {
-        /// <summary>
-        /// Метод расчёт значения функции
-        /// </summary>
-        /// <param name="function">Полиноминальная функция</param>
-        public void Calculate(PolynomialFunction function)
-        {
-            if (!function.AreValuesSet())
-            {
-                return;
-            }
+        if (!function.AreValuesSet()) return;
 
-            foreach (Arguments arguments in function.argumentsList)
-            {
-                if (arguments.valueOfX.HasValue && arguments.valueOfY.HasValue)
-                {
-                    arguments.result = function.valueOfA * Math.Pow(arguments.valueOfX.Value, function.functionPower) +
-                                       function.valueOfB * Math.Pow(arguments.valueOfY.Value, function.functionPower - 1) +
-                                       function.valueOfC;
-                }
-                else
-                {
-                    arguments.result = null;
-                }
-            }
-        }
+        foreach (var arguments in function.ArgumentsList)
+            if (arguments is { ValueOfX: not null, ValueOfY: not null })
+                arguments.Result = function.ValueOfA * Math.Pow(arguments.ValueOfX.Value, function.FunctionPower) +
+                                   function.ValueOfB * Math.Pow(arguments.ValueOfY.Value, function.FunctionPower - 1) +
+                                   function.ValueOfC;
+            else
+                arguments.Result = null;
     }
 }
