@@ -1,8 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using FunctionApp.ViewModel;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using FunctionApp.ViewModel;
 
 namespace FunctionApp.Model;
 

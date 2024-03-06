@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using FunctionApp.ViewModel;
+﻿using FunctionApp.ViewModel;
 
 namespace FunctionApp.Model;
 
